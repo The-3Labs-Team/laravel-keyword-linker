@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace The3LabsTeam\KeywordLinker\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class KeywordLinkerCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-keyword-linker';
 
     public $description = 'My command';
 
