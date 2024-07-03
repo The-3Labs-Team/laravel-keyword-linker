@@ -17,9 +17,7 @@ class KeywordLinkerServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-keyword-linker')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel-keyword-linker_table')
-            ->hasCommand(KeywordLinkerCommand::class);
+            ->hasConfigFile();
+//            ->hasMigration('create_laravel-keyword-linker_table');
     }
 }
