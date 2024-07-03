@@ -1,6 +1,5 @@
 <?php
 
-
 use The3LabsTeam\KeywordLinker\Facades\KeywordLinker;
 
 beforeEach(function () {

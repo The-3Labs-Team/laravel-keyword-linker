@@ -4,7 +4,6 @@ namespace The3LabsTeam\KeywordLinker;
 
 class KeywordLinker
 {
-
     public function parse(string $content, array $keywords): string
     {
         foreach ($keywords as $keyword => $link) {

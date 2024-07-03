@@ -4,7 +4,6 @@ namespace The3LabsTeam\KeywordLinker;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use The3LabsTeam\KeywordLinker\Commands\KeywordLinkerCommand;
 
 class KeywordLinkerServiceProvider extends PackageServiceProvider
 {
@@ -18,6 +17,6 @@ class KeywordLinkerServiceProvider extends PackageServiceProvider
         $package
             ->name('laravel-keyword-linker')
             ->hasConfigFile();
-//            ->hasMigration('create_laravel-keyword-linker_table');
+        //            ->hasMigration('create_laravel-keyword-linker_table');
     }
 }
