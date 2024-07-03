@@ -1,3 +1,5 @@
+⚠️ Under development, please come back later
+
 # Laravel Keyword Linker
 
 This is a package that converts keywords into links.
@@ -66,10 +68,15 @@ You can install the package via VCS, in your composer.json add:
 ## Usage
 
 ```php
-use The3LabsTeam\KeywordLinker\KeywordLinker;
+use The3LabsTeam\KeywordLinker\Facades\KeywordLinker;
 
 $content = "This is a test content";
-$keywords = ["test"];
+
+$keywords = [
+    'test' => 'https://example.com/test',
+    // 'keyword' => 'link'
+];
+
 echo KeywordLinker::parse($content, $keywords);
 
 # output: This is a <a href="http://example.com/test">test</a> content
