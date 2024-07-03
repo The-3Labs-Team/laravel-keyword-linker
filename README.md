@@ -1,59 +1,78 @@
-# This is my package laravel-keyword-linker
+# Laravel Keyword Linker
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/the-3labs-team/laravel-keyword-linker.svg?style=flat-square)](https://packagist.org/packages/the-3labs-team/laravel-keyword-linker)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/the-3labs-team/laravel-keyword-linker/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/the-3labs-team/laravel-keyword-linker/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/the-3labs-team/laravel-keyword-linker/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/the-3labs-team/laravel-keyword-linker/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/the-3labs-team/laravel-keyword-linker.svg?style=flat-square)](https://packagist.org/packages/the-3labs-team/laravel-keyword-linker)
+This is a package that converts keywords into links.
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-keyword-linker.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-keyword-linker)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
 ## Installation
 
-You can install the package via composer:
+You can install the package via VCS, in your composer.json add:
 
-```bash
-composer require the-3labs-team/laravel-keyword-linker
+```json
+"the-3labs-team/laravel-keyword-linker": "dev-main"
+    
+"repositories": [
+    
+  {
+    "type": "vcs",
+    "url": "https://github.com/The-3Labs-Team/laravel-keyword-linker.git"
+  }
+    
+]
 ```
 
-You can publish and run the migrations with:
+[//]: # (You can publish and run the migrations with:)
 
-```bash
-php artisan vendor:publish --tag="laravel-keyword-linker-migrations"
-php artisan migrate
-```
+[//]: # ()
+[//]: # (```bash)
 
-You can publish the config file with:
+[//]: # (php artisan vendor:publish --tag="laravel-keyword-linker-migrations")
 
-```bash
-php artisan vendor:publish --tag="laravel-keyword-linker-config"
-```
+[//]: # (php artisan migrate)
 
-This is the contents of the published config file:
+[//]: # (```)
 
-```php
-return [
-];
-```
+[//]: # ()
+[//]: # (You can publish the config file with:)
 
-Optionally, you can publish the views using
+[//]: # ()
+[//]: # (```bash)
 
-```bash
-php artisan vendor:publish --tag="laravel-keyword-linker-views"
-```
+[//]: # (php artisan vendor:publish --tag="laravel-keyword-linker-config")
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (This is the contents of the published config file:)
+
+[//]: # ()
+[//]: # (```php)
+
+[//]: # (return [)
+
+[//]: # (];)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (Optionally, you can publish the views using)
+
+[//]: # ()
+[//]: # (```bash)
+
+[//]: # (php artisan vendor:publish --tag="laravel-keyword-linker-views")
+
+[//]: # (```)
 
 ## Usage
 
 ```php
-$keywordLinker = new The3LabsTeam\KeywordLinker();
-echo $keywordLinker->echoPhrase('Hello, The3LabsTeam!');
+use The3LabsTeam\KeywordLinker\KeywordLinker;
+
+$content = "This is a test content";
+$keywords = ["test"];
+echo KeywordLinker::parse($content, $keywords);
+
+# output: This is a <a href="http://example.com/test">test</a> content
 ```
 
 ## Testing
