@@ -33,37 +33,23 @@ You can install the package via VCS, in your composer.json add:
 
 [//]: # (```)
 
-[//]: # ()
-[//]: # (You can publish the config file with:)
 
-[//]: # ()
-[//]: # (```bash)
+You can publish the config file with:
 
-[//]: # (php artisan vendor:publish --tag="laravel-keyword-linker-config")
+```bash
+ php artisan vendor:publish --tag=keyword-linker-config    
+```
 
-[//]: # (```)
+This is the contents of the published config file:
 
-[//]: # ()
-[//]: # (This is the contents of the published config file:)
+```php
 
-[//]: # ()
-[//]: # (```php)
+return [
+    'limit-auto-keywords' => 5, // limit auto keywords to be linked
+];
 
-[//]: # (return [)
+```
 
-[//]: # (];)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (Optionally, you can publish the views using)
-
-[//]: # ()
-[//]: # (```bash)
-
-[//]: # (php artisan vendor:publish --tag="laravel-keyword-linker-views")
-
-[//]: # (```)
 
 ## Usage
 

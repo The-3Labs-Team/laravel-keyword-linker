@@ -53,3 +53,16 @@ it('cannot add link if text is an attribute of a img tag', function () {
     $parsedContent = KeywordLinker::parse($content, $this->keywords);
     expect($parsedContent)->toBe('<img src="https://example.com/test" alt="This is a test ">');
 });
+
+it('can add link to 5 keywords', function () {
+    $content = 'This is a test test test test test test example example';
+    $parsedContent = KeywordLinker::parse($content, $this->keywords);
+    config(['keyword-linker.limit-auto-keywords' => 5]);
+    expect($parsedContent)->toBe('This is a <a href=\'https://example.com/test\'>test</a> <a href=\'https://example.com/test\'>test</a> <a href=\'https://example.com/test\'>test</a> <a href=\'https://example.com/test\'>test</a> <a href=\'https://example.com/test\'>test</a> test <a href=\'https://example.com/example\'>example</a> <a href=\'https://example.com/example\'>example</a>');
+});
+
+it('can add link to keyword without parsing into shortcodes', function () {
+    $content = 'This is a [test]';
+    $parsedContent = KeywordLinker::parse($content, $this->keywords);
+    expect($parsedContent)->toBe('This is a [test]');
+});
