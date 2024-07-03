@@ -14,12 +14,17 @@ class KeywordLinker
         $this->keywords = $keywords;
     }
 
-    public function parse(): string
+    public static function parse(string $content, array $keywords): string
     {
-        foreach ($this->keywords as $keyword) {
+        return (new self($content, $keywords))->parseContent();
+    }
+
+    public function parseContent(): string
+    {
+        foreach ($this->keywords as $keyword => $link) {
             $this->content = preg_replace(
-                "/\b($keyword)\b/i",
-                "<a href='https://example.com/$1'>$1</a>",
+                "/\b($keyword)\b(?![^<]*>|[^<>]*<\/a>)/i",
+                "<a href='$link'>$1</a>",
                 $this->content
             );
         }
