@@ -10,6 +10,7 @@ class KeywordLinker
     public function parse(string $content, array $keywords): string
     {
         $limit = config('keyword-linker.limit-auto-keywords') ?? -1;
+        $whiteList = self::getWhiteList();
 
         foreach ($keywords as $keyword => $data) {
             $link = $data['url'];
@@ -19,7 +20,7 @@ class KeywordLinker
             $replacement = "<a href='$link'$rel$target>$1</a>";
 
             $content = preg_replace(
-                "/\b($keyword)\b(?![^<]*>|[^<>]*<\/a>|[^[]*\])/i",
+                "/\b($keyword)\b(?=($whiteList))(?![^<]*>|[^<>]*<\/a>|[^[]*\])/i",
                 $replacement,
                 $content,
                 $limit
@@ -27,5 +28,16 @@ class KeywordLinker
         }
 
         return $content;
+    }
+
+    protected static function getWhiteList(): string
+    {
+        $whiteList = config('keyword-linker.whitelist');
+        $parseWhiteList = '';
+        foreach ($whiteList as $index => $tag) {
+            $parseWhiteList .= ".*<\/$tag>" . ($index < count($whiteList) - 1 ? '|' : '');
+        }
+
+        return $parseWhiteList;
     }
 }
