@@ -35,7 +35,7 @@ class KeywordLinker
         $whiteList = config('keyword-linker.whitelist');
         $parseWhiteList = '';
         foreach ($whiteList as $index => $tag) {
-            $parseWhiteList .= ".*<\/$tag>" . ($index < count($whiteList) - 1 ? '|' : '');
+            $parseWhiteList .= ".*<\/$tag>".($index < count($whiteList) - 1 ? '|' : '');
         }
 
         return $parseWhiteList;
