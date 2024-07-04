@@ -46,6 +46,10 @@ This is the contents of the published config file:
 
 return [
     'limit-auto-keywords' => 5, // limit auto keywords to be linked
+    'whitelist' => [
+        'p',
+        'blockquote',
+    ],
 ];
 
 ```
