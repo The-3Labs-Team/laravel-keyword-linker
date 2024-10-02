@@ -58,6 +58,32 @@ echo KeywordLinker::parse($content, $keywords);
 # output: This is a <a href="http://example.com/test">test</a> content
 ```
 
+### Common usage
+
+Use rel attribute to add nofollow to the link
+
+```php
+$keywords = [
+    'test' => [
+        'link' => 'https://example.com/test',
+        'rel' => 'nofollow'
+    ],
+    // Usage: 'keyword' => ['link' => 'link', 'rel' => 'nofollow']
+];
+```
+
+Use target attribute to open the link in a new tab
+
+```php
+$keywords = [
+    'test' => [
+        'link' => 'https://example.com/test',
+        'target' => '_blank'
+    ],
+    // Usage: 'keyword' => ['link' => 'link', 'target' => '_blank']
+];
+```
+
 ## Testing
 
 ```bash
