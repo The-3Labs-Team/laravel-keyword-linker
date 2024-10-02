@@ -1,6 +1,6 @@
 {
     "name": "the-3labs-team/laravel-keyword-linker",
-    "description": "This is my package laravel-keyword-linker",
+    "description": "A Laravel package to link keywords in your content",
     "keywords": [
         "The-3Labs-Team",
         "laravel",
