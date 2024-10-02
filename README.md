@@ -7,32 +7,11 @@ This is a package that converts keywords into links.
 
 ## Installation
 
-You can install the package via VCS, in your composer.json add:
+You can install the package via composer:
 
-```json
-"the-3labs-team/laravel-keyword-linker": "dev-main"
-    
-"repositories": [
-    
-  {
-    "type": "vcs",
-    "url": "https://github.com/The-3Labs-Team/laravel-keyword-linker.git"
-  }
-    
-]
+```bash
+composer install the-3labs-team/keyword-linker
 ```
-
-[//]: # (You can publish and run the migrations with:)
-
-[//]: # ()
-[//]: # (```bash)
-
-[//]: # (php artisan vendor:publish --tag="laravel-keyword-linker-migrations")
-
-[//]: # (php artisan migrate)
-
-[//]: # (```)
-
 
 You can publish the config file with:
 
@@ -64,7 +43,7 @@ $content = "This is a test content";
 
 $keywords = [
     'test' => 'https://example.com/test',
-    // 'keyword' => 'link'
+    // Usage: 'keyword' => 'link'
 ];
 
 echo KeywordLinker::parse($content, $keywords);
