@@ -121,35 +121,35 @@ it('can add link to keyword without parsing into shortcodes', function () {
     expect($parsedContent)->toBe('<p>This is a [test]</p>');
 });
 
-//link with rel attribute nofollow
+// link with rel attribute nofollow
 it('can add link to keyword with rel attribute nofollow', function () {
     $content = '<p>This is a test</p>';
     $parsedContent = KeywordLinker::parse($content, $this->relKeywords);
     expect($parsedContent)->toBe('<p>This is a <a href=\'https://example.com/test\' rel=\'nofollow\'>test</a></p>');
 });
 
-//link with rel attribute sponsored
+// link with rel attribute sponsored
 it('can add link to keyword with rel attribute sponsored', function () {
     $content = '<p>This is a example</p>';
     $parsedContent = KeywordLinker::parse($content, $this->relKeywords);
     expect($parsedContent)->toBe('<p>This is a <a href=\'https://example.com/example\' rel=\'sponsored\'>example</a></p>');
 });
 
-//link with target attribute _blank
+// link with target attribute _blank
 it('can add link to keyword with target attribute _blank', function () {
     $content = '<p>This is a test</p>';
     $parsedContent = KeywordLinker::parse($content, $this->targetKeywords);
     expect($parsedContent)->toBe('<p>This is a <a href=\'https://example.com/test\' target=\'_blank\'>test</a></p>');
 });
 
-//link with target attribute _self
+// link with target attribute _self
 it('can add link to keyword with target attribute _self', function () {
     $content = '<p>This is a example</p>';
     $parsedContent = KeywordLinker::parse($content, $this->targetKeywords);
     expect($parsedContent)->toBe('<p>This is a <a href=\'https://example.com/example\'>example</a></p>');
 });
 
-//link with rel and target attribute
+// link with rel and target attribute
 it('can add link to keyword with rel and target attribute', function () {
     $content = '<p>This is a test</p>';
     $parsedContent = KeywordLinker::parse($content, $this->relTargetKeywords);
