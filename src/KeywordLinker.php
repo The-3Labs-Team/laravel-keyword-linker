@@ -13,6 +13,7 @@ class KeywordLinker
         $whiteList = self::getWhiteList();
 
         foreach ($keywords as $keyword => $data) {
+            $keyword = str_replace('&', '&amp;', $keyword);
             $link = $data['url'];
             $rel = $data['rel'] ? ' rel=\''.$data['rel'].'\'' : '';
             $target = $data['target'] && $data['target'] !== '_self' ? ' target=\''.$data['target'].'\'' : '';
