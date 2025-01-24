@@ -9,11 +9,12 @@ class KeywordLinker
      */
     public function parse(string $content, array $keywords): string
     {
+        //content HTML format
+        $content = htmlspecialchars_decode($content);
         $limit = config('keyword-linker.limit-auto-keywords') ?? -1;
         $whiteList = self::getWhiteList();
 
         foreach ($keywords as $keyword => $data) {
-            $keyword = str_replace('&', '&amp;', $keyword);
             $link = $data['url'];
             $rel = $data['rel'] ? ' rel=\''.$data['rel'].'\'' : '';
             $target = $data['target'] && $data['target'] !== '_self' ? ' target=\''.$data['target'].'\'' : '';

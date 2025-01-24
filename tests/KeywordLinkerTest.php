@@ -58,6 +58,26 @@ beforeEach(function () {
                 'target' => '_self',
             ],
         ];
+
+    $this->keywordsSpecial =
+        [
+            'test & example' => [
+                'url' => 'https://example.com/test',
+                'rel' => null,
+                'target' => null,
+            ],
+            'test " example' => [
+                'url' => 'https://example.com/test',
+                'rel' => null,
+                'target' => null,
+            ],
+            "test' example" => [
+                'url' => 'https://example.com/test',
+                'rel' => null,
+                'target' => null,
+            ],
+        ];
+
 });
 
 it('can add link to keyword without tag', function () {
@@ -201,3 +221,40 @@ it('can add link to keyword with no whitelist (H2)', function () {
     $parsedContent = KeywordLinker::parse($content, $this->keywords);
     expect($parsedContent)->toBe('<h2>This is a <a href=\'https://example.com/test\'>test</a></h2>');
 });
+
+it('can add link to keyword with special characters (& 1)', function () {
+    $content = '<p>This is a test &amp; example</p>';
+    config(['keyword-linker.whitelist' => []]);
+    $parsedContent = KeywordLinker::parse($content, $this->keywordsSpecial);
+    expect($parsedContent)->toBe('<p>This is a <a href=\'https://example.com/test\'>test & example</a></p>');
+});
+
+it('can add link to keyword with special characters (& 2)', function () {
+    $content = '<p>This is a test & example</p>';
+    config(['keyword-linker.whitelist' => []]);
+    $parsedContent = KeywordLinker::parse($content, $this->keywordsSpecial);
+    expect($parsedContent)->toBe('<p>This is a <a href=\'https://example.com/test\'>test & example</a></p>');
+});
+
+it('can add link to keyword with special characters (quot 1)', function () {
+    $content = '<p>This is a test &quot; example</p>';
+    config(['keyword-linker.whitelist' => []]);
+    $parsedContent = KeywordLinker::parse($content, $this->keywordsSpecial);
+    expect($parsedContent)->toBe('<p>This is a <a href=\'https://example.com/test\'>test " example</a></p>');
+});
+
+it('can add link to keyword with special characters (quot 2)', function () {
+    $content = '<p>This is a test " example</p>';
+    config(['keyword-linker.whitelist' => []]);
+    $parsedContent = KeywordLinker::parse($content, $this->keywordsSpecial);
+    expect($parsedContent)->toBe('<p>This is a <a href=\'https://example.com/test\'>test " example</a></p>');
+});
+
+it('can add link to keyword with special characters (apos)', function () {
+    $content = "<p>This is a test' example</p>";
+    config(['keyword-linker.whitelist' => []]);
+    $parsedContent = KeywordLinker::parse($content, $this->keywordsSpecial);
+    expect($parsedContent)->toBe("<p>This is a <a href='https://example.com/test'>test' example</a></p>");
+});
+
+
