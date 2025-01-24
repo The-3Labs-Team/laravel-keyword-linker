@@ -256,5 +256,3 @@ it('can add link to keyword with special characters (apos)', function () {
     $parsedContent = KeywordLinker::parse($content, $this->keywordsSpecial);
     expect($parsedContent)->toBe("<p>This is a <a href='https://example.com/test'>test' example</a></p>");
 });
-
-

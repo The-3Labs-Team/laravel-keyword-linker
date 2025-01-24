@@ -9,7 +9,7 @@ class KeywordLinker
      */
     public function parse(string $content, array $keywords): string
     {
-        //content HTML format
+        // content HTML format
         $content = htmlspecialchars_decode($content);
         $limit = config('keyword-linker.limit-auto-keywords') ?? -1;
         $whiteList = self::getWhiteList();
