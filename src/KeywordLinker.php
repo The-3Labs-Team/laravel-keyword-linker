@@ -15,7 +15,8 @@ class KeywordLinker
         $whiteList = self::getWhiteList();
 
         foreach ($keywords as $keyword => $data) {
-            $link = $data['url'];
+            $link = self::parseLink($data['url']);
+
             $rel = $data['rel'] ? ' rel=\''.$data['rel'].'\'' : '';
             $target = $data['target'] && $data['target'] !== '_self' ? ' target=\''.$data['target'].'\'' : '';
 
@@ -41,5 +42,21 @@ class KeywordLinker
         }
 
         return $parseWhiteList;
+    }
+
+    protected static function parseLink(string $link): string
+    {
+        if(config('keyword-linker.query_tracking.enabled')) {
+            $trackingQueryString = config('keyword-linker.query_tracking.query_string');
+
+            $queryString = parse_url($link, PHP_URL_QUERY);
+            $parsedUrl = parse_url($link);
+            $baseUrl = $parsedUrl['scheme'] . '://' . $parsedUrl['host'];
+            $path = $parsedUrl['path'] ?? '';
+            $query = $queryString ? $queryString . '&' . $trackingQueryString : $trackingQueryString;
+            $link = $baseUrl . $path . '?' . $query;
+        }
+
+        return $link;
     }
 }

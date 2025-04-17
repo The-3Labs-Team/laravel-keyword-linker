@@ -76,6 +76,11 @@ beforeEach(function () {
                 'rel' => null,
                 'target' => null,
             ],
+            "query example" => [
+                'url' => 'https://example.com/test?abc=123',
+                'rel' => null,
+                'target' => null,
+            ],
         ];
 
 });
@@ -255,4 +260,24 @@ it('can add link to keyword with special characters (apos)', function () {
     config(['keyword-linker.whitelist' => []]);
     $parsedContent = KeywordLinker::parse($content, $this->keywordsSpecial);
     expect($parsedContent)->toBe("<p>This is a <a href='https://example.com/test'>test' example</a></p>");
+});
+
+it('can add link to keyword with query tracking', function () {
+    $content = "<p>This is a test & example</p>";
+    config(['keyword-linker.whitelist' => []]);
+    config(['keyword-linker.query_tracking.enabled' => true]);
+    config(['keyword-linker.query_tracking.query_string' => 'tracking=kwlinker']);
+
+    $parsedContent = KeywordLinker::parse($content, $this->keywordsSpecial);
+    expect($parsedContent)->toBe("<p>This is a <a href='https://example.com/test?tracking=kwlinker'>test & example</a></p>");
+});
+
+it('can add link with query string to keyword with query tracking', function () {
+    $content = "<p>This is a query example</p>";
+    config(['keyword-linker.whitelist' => []]);
+    config(['keyword-linker.query_tracking.enabled' => true]);
+    config(['keyword-linker.query_tracking.query_string' => 'tracking=kwlinker']);
+
+    $parsedContent = KeywordLinker::parse($content, $this->keywordsSpecial);
+    expect($parsedContent)->toBe("<p>This is a <a href='https://example.com/test?abc=123&tracking=kwlinker'>query example</a></p>");
 });

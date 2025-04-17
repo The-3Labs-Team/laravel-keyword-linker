@@ -36,6 +36,11 @@ return [
         'p',
         'blockquote',
     ],
+    
+    'query_tracking' => [
+        'enabled' => false,
+        'query_string' => 'tracking=kwlinker',
+    ],
 ];
 
 ```
