@@ -76,7 +76,7 @@ beforeEach(function () {
                 'rel' => null,
                 'target' => null,
             ],
-            "query example" => [
+            'query example' => [
                 'url' => 'https://example.com/test?abc=123',
                 'rel' => null,
                 'target' => null,
@@ -263,7 +263,7 @@ it('can add link to keyword with special characters (apos)', function () {
 });
 
 it('can add link to keyword with query tracking', function () {
-    $content = "<p>This is a test & example</p>";
+    $content = '<p>This is a test & example</p>';
     config(['keyword-linker.whitelist' => []]);
     config(['keyword-linker.query_tracking.enabled' => true]);
     config(['keyword-linker.query_tracking.query_string' => 'tracking=kwlinker']);
@@ -273,7 +273,7 @@ it('can add link to keyword with query tracking', function () {
 });
 
 it('can add link with query string to keyword with query tracking', function () {
-    $content = "<p>This is a query example</p>";
+    $content = '<p>This is a query example</p>';
     config(['keyword-linker.whitelist' => []]);
     config(['keyword-linker.query_tracking.enabled' => true]);
     config(['keyword-linker.query_tracking.query_string' => 'tracking=kwlinker']);

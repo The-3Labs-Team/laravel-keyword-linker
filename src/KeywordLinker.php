@@ -46,15 +46,15 @@ class KeywordLinker
 
     protected static function parseLink(string $link): string
     {
-        if(config('keyword-linker.query_tracking.enabled')) {
+        if (config('keyword-linker.query_tracking.enabled')) {
             $trackingQueryString = config('keyword-linker.query_tracking.query_string');
 
             $queryString = parse_url($link, PHP_URL_QUERY);
             $parsedUrl = parse_url($link);
-            $baseUrl = $parsedUrl['scheme'] . '://' . $parsedUrl['host'];
+            $baseUrl = $parsedUrl['scheme'].'://'.$parsedUrl['host'];
             $path = $parsedUrl['path'] ?? '';
-            $query = $queryString ? $queryString . '&' . $trackingQueryString : $trackingQueryString;
-            $link = $baseUrl . $path . '?' . $query;
+            $query = $queryString ? $queryString.'&'.$trackingQueryString : $trackingQueryString;
+            $link = $baseUrl.$path.'?'.$query;
         }
 
         return $link;
