@@ -80,7 +80,7 @@ beforeEach(function () {
                 'url' => 'https://example.com/test?abc=123',
                 'rel' => null,
                 'target' => null,
-            ]
+            ],
         ];
 
     $this->regexKeywords =
@@ -94,7 +94,7 @@ beforeEach(function () {
                 'url' => 'https://example.com/test',
                 'rel' => null,
                 'target' => null,
-            ]
+            ],
         ];
 });
 
@@ -302,8 +302,7 @@ it('can add link with query string to keyword with query tracking', function () 
     expect($parsedContent)->toBe("<p>This is a <a href='https://example.com/test?abc=123&tracking=kwlinker'>query example</a></p>");
 });
 
-
-/*With regex*/
+/* With regex */
 it('can add link to keyword with regex', function () {
     $content = '<p>This is a Migliore telefono</p>';
     $parsedContent = KeywordLinker::parse($content, $this->regexKeywords);
@@ -322,6 +321,3 @@ it('can add link to keyword with regex (multiple with limit)', function () {
     $parsedContent = KeywordLinker::parse($content, $this->regexKeywords);
     expect($parsedContent)->toBe('<p>This is a <a href=\'https://example.com/test\'>amazon</a> ebay <a href=\'https://example.com/test\'>amazon</a> ebay amazon ebay amazon ebay</p>');
 });
-
-
-
