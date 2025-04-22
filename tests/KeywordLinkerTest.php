@@ -153,6 +153,13 @@ it('can add link to 5 keywords', function () {
     expect($parsedContent)->toBe('<p>This is a <a href=\'https://example.com/test\'>test</a> <a href=\'https://example.com/test\'>test</a> <a href=\'https://example.com/test\'>test</a> <a href=\'https://example.com/test\'>test</a> <a href=\'https://example.com/test\'>test</a> test <a href=\'https://example.com/example\'>example</a> <a href=\'https://example.com/example\'>example</a></p>');
 });
 
+it('can add link to 2 keywords', function () {
+    $content = '<p>This is a test test test test test test</p>';
+    config(['keyword-linker.limit-auto-keywords' => 2]);
+    $parsedContent = KeywordLinker::parse($content, $this->keywords);
+    expect($parsedContent)->toBe('<p>This is a <a href=\'https://example.com/test\'>test</a> <a href=\'https://example.com/test\'>test</a> test test test test</p>');
+});
+
 it('can add link to keyword without parsing into shortcodes', function () {
     $content = '<p>This is a [test]</p>';
     $parsedContent = KeywordLinker::parse($content, $this->keywords);
@@ -306,4 +313,11 @@ it('can add link to keyword with regex (multiple)', function () {
     $content = '<p>This is a amazon, ebay and instant</p>';
     $parsedContent = KeywordLinker::parse($content, $this->regexKeywords);
     expect($parsedContent)->toBe('<p>This is a <a href=\'https://example.com/test\'>amazon</a>, <a href=\'https://example.com/test\'>ebay</a> and instant</p>');
+});
+
+it('can add link to keyword with regex (multiple with limit)', function () {
+    $content = '<p>This is a amazon ebay amazon ebay amazon ebay amazon ebay</p>';
+    config(['keyword-linker.limit-auto-keywords' => 2]);
+    $parsedContent = KeywordLinker::parse($content, $this->regexKeywords);
+    expect($parsedContent)->toBe('<p>This is a <a href=\'https://example.com/test\'>amazon</a> ebay <a href=\'https://example.com/test\'>amazon</a> ebay amazon ebay amazon ebay</p>');
 });
