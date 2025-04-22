@@ -22,12 +22,22 @@ class KeywordLinker
 
             $replacement = "<a href='$link'$rel$target>$1</a>";
 
-            $content = preg_replace(
-                "/\b($keyword)\b(?=($whiteList))(?![^<]*>|[^<>]*<\/a>|[^[]*\])/i",
-                $replacement,
-                $content,
-                $limit
-            );
+            if(self::isRegex($keyword)){
+                $contentWithoutHtml = strip_tags($content);
+                preg_match_all($keyword, $contentWithoutHtml, $matches);
+                $keywordList = $matches[0];
+            } else {
+                $keywordList = [$keyword];
+            }
+
+            foreach ($keywordList as $keyword) {
+                $content = preg_replace(
+                    "/\b($keyword)\b(?=($whiteList))(?![^<]*>|[^<>]*<\/a>|[^[]*\])/i",
+                    $replacement,
+                    $content,
+                    $limit
+                );
+            }
         }
 
         return $content;
@@ -58,5 +68,15 @@ class KeywordLinker
         }
 
         return $link;
+    }
+
+
+    /**
+     * Check if the keyword is a regex pattern.
+     */
+    protected static function isRegex(string $keyword): bool
+    {
+        // Check if the keyword starts and ends with a delimiter (e.g., /)
+        return preg_match('/^\/.*\/[a-zA-Z]*$/', $keyword) === 1;
     }
 }
