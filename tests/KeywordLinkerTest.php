@@ -76,13 +76,26 @@ beforeEach(function () {
                 'rel' => null,
                 'target' => null,
             ],
-            "query example" => [
+            'query example' => [
                 'url' => 'https://example.com/test?abc=123',
                 'rel' => null,
                 'target' => null,
-            ],
+            ]
         ];
 
+    $this->regexKeywords =
+        [
+            '/\b(miglior[a-z]*)\s+(telefon[a-z]*)\b/i' => [
+                'url' => 'https://example.com/test',
+                'rel' => null,
+                'target' => null,
+            ],
+            '/(amazon|ebay)/i' => [
+                'url' => 'https://example.com/test',
+                'rel' => null,
+                'target' => null,
+            ]
+        ];
 });
 
 it('can add link to keyword without tag', function () {
@@ -263,7 +276,7 @@ it('can add link to keyword with special characters (apos)', function () {
 });
 
 it('can add link to keyword with query tracking', function () {
-    $content = "<p>This is a test & example</p>";
+    $content = '<p>This is a test & example</p>';
     config(['keyword-linker.whitelist' => []]);
     config(['keyword-linker.query_tracking.enabled' => true]);
     config(['keyword-linker.query_tracking.query_string' => 'tracking=kwlinker']);
@@ -273,7 +286,7 @@ it('can add link to keyword with query tracking', function () {
 });
 
 it('can add link with query string to keyword with query tracking', function () {
-    $content = "<p>This is a query example</p>";
+    $content = '<p>This is a query example</p>';
     config(['keyword-linker.whitelist' => []]);
     config(['keyword-linker.query_tracking.enabled' => true]);
     config(['keyword-linker.query_tracking.query_string' => 'tracking=kwlinker']);
@@ -281,3 +294,18 @@ it('can add link with query string to keyword with query tracking', function () 
     $parsedContent = KeywordLinker::parse($content, $this->keywordsSpecial);
     expect($parsedContent)->toBe("<p>This is a <a href='https://example.com/test?abc=123&tracking=kwlinker'>query example</a></p>");
 });
+
+
+/*With regex*/
+it('can add link to keyword with regex', function () {
+    $content = '<p>This is a Migliore telefono</p>';
+    $parsedContent = KeywordLinker::parse($content, $this->regexKeywords);
+    expect($parsedContent)->toBe('<p>This is a <a href=\'https://example.com/test\'>Migliore telefono</a></p>');
+});
+
+it('can add link to keyword with regex (multiple)', function () {
+    $content = '<p>This is a amazon, ebay and instant</p>';
+    $parsedContent = KeywordLinker::parse($content, $this->regexKeywords);
+    expect($parsedContent)->toBe('<p>This is a <a href=\'https://example.com/test\'>amazon</a>, <a href=\'https://example.com/test\'>ebay</a> and instant</p>');
+});
+

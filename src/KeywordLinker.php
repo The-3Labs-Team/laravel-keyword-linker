@@ -22,12 +22,22 @@ class KeywordLinker
 
             $replacement = "<a href='$link'$rel$target>$1</a>";
 
-            $content = preg_replace(
-                "/\b($keyword)\b(?=($whiteList))(?![^<]*>|[^<>]*<\/a>|[^[]*\])/i",
-                $replacement,
-                $content,
-                $limit
-            );
+            if(self::isRegex($keyword)){
+                $contentWithoutHtml = strip_tags($content);
+                preg_match_all($keyword, $contentWithoutHtml, $matches);
+                $keywordList = $matches[0];
+            } else {
+                $keywordList = [$keyword];
+            }
+
+            foreach ($keywordList as $keyword) {
+                $content = preg_replace(
+                    "/\b($keyword)\b(?=($whiteList))(?![^<]*>|[^<>]*<\/a>|[^[]*\])/i",
+                    $replacement,
+                    $content,
+                    $limit
+                );
+            }
         }
 
         return $content;
@@ -46,17 +56,27 @@ class KeywordLinker
 
     protected static function parseLink(string $link): string
     {
-        if(config('keyword-linker.query_tracking.enabled')) {
+        if (config('keyword-linker.query_tracking.enabled')) {
             $trackingQueryString = config('keyword-linker.query_tracking.query_string');
 
             $queryString = parse_url($link, PHP_URL_QUERY);
             $parsedUrl = parse_url($link);
-            $baseUrl = $parsedUrl['scheme'] . '://' . $parsedUrl['host'];
+            $baseUrl = $parsedUrl['scheme'].'://'.$parsedUrl['host'];
             $path = $parsedUrl['path'] ?? '';
-            $query = $queryString ? $queryString . '&' . $trackingQueryString : $trackingQueryString;
-            $link = $baseUrl . $path . '?' . $query;
+            $query = $queryString ? $queryString.'&'.$trackingQueryString : $trackingQueryString;
+            $link = $baseUrl.$path.'?'.$query;
         }
 
         return $link;
+    }
+
+
+    /**
+     * Check if the keyword is a regex pattern.
+     */
+    protected static function isRegex(string $keyword): bool
+    {
+        // Check if the keyword starts and ends with a delimiter (e.g., /)
+        return preg_match('/^\/.*\/[a-zA-Z]*$/', $keyword) === 1;
     }
 }
