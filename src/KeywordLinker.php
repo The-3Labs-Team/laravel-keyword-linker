@@ -22,7 +22,7 @@ class KeywordLinker
 
             $replacement = "<a href='$link'$rel$target>$1</a>";
 
-            if(self::isRegex($keyword)){
+            if (self::isRegex($keyword)) {
                 $contentWithoutHtml = strip_tags($content);
                 preg_match_all($keyword, $contentWithoutHtml, $matches);
                 $keywordList = $matches[0];
@@ -84,7 +84,6 @@ class KeywordLinker
 
         return $link;
     }
-
 
     /**
      * Check if the keyword is a regex pattern.
