@@ -26,11 +26,26 @@ class KeywordLinker
                 $contentWithoutHtml = strip_tags($content);
                 preg_match_all($keyword, $contentWithoutHtml, $matches);
                 $keywordList = $matches[0];
-            } else {
-                $keywordList = [$keyword];
-            }
 
-            foreach ($keywordList as $keyword) {
+                $totalReplacements = 0;
+
+                foreach ($keywordList as $keyword) {
+
+                    if ($totalReplacements >= $limit && $limit > 0) {
+                        break;
+                    }
+
+                    $content = preg_replace(
+                        "/\b($keyword)\b(?=($whiteList))(?![^<]*>|[^<>]*<\/a>|[^[]*\])/i",
+                        $replacement,
+                        $content,
+                        $limit,
+                        $countReplacements
+                    );
+
+                    $totalReplacements += $countReplacements;
+                }
+            } else {
                 $content = preg_replace(
                     "/\b($keyword)\b(?=($whiteList))(?![^<]*>|[^<>]*<\/a>|[^[]*\])/i",
                     $replacement,
