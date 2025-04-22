@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-keyword-linker` will be documented in this file.
 
+## v1.0.5 - 2025-04-22
+
+**Full Changelog**: https://github.com/The-3Labs-Team/laravel-keyword-linker/compare/v1.0.4...v1.0.5
+
 ## v1.0.4 - 2025-04-22
 
 **Full Changelog**: https://github.com/The-3Labs-Team/laravel-keyword-linker/compare/v1.0.3...v1.0.4
