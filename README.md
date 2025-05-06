@@ -115,3 +115,33 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+## Sponsor
+
+<div align="center">  
+    <a href="https://www.tomshw.it/" target="_blank" rel="noopener noreferrer">
+        <img style="margin: 10px" src="https://3labs-assets.b-cdn.net/assets/logos/400/toms.png" alt="Tom's Hardware - Notizie, recensioni, guide all'acquisto e approfondimenti per tutti gli appassionati di computer, smartphone, videogiochi, film, serie tv, gadget e non solo" height="50"/>  
+    </a>
+    <a href="https://spaziogames.it/" target="_blank" rel="noopener noreferrer">
+        <img style="margin: 10px" src="https://3labs-assets.b-cdn.net/assets/logos/400/spazio.png" alt="Spaziogames - Tutto sul mondo dei videogiochi. Troverai tantissime anteprime, recensioni, notizie dei giochi per tutte le console, PC, iPhone e Android." height="50"/>
+    </a>
+    <a href="https://cpop.it/" target="_blank" rel="noopener noreferrer">
+        <img style="margin: 10px" src="https://3labs-assets.b-cdn.net/assets/logos/400/cpop.png" alt="Cpop - News, recensioni, guide su fumetto, cinema & serie TV, gioco da tavolo e di ruolo e collezionismo. Tutto quello di cui hai bisogno per rimanere aggiornato sul mondo della cultura pop" height="50"/>
+    </a>
+    <a href="https://data4biz.com/" target="_blank" rel="noopener noreferrer">
+        <img style="margin: 10px" src="https://3labs-assets.b-cdn.net/assets/logos/400/d4b.png" alt="Data4Biz - Sito dedicato alla trasformazione digitale del business" height="50"/>
+    </a>
+    <a href="https://soshomegarden.com/" target="_blank" rel="noopener noreferrer">
+        <img style="margin: 10px" src="https://3labs-assets.b-cdn.net/assets/logos/400/sos.png" alt="SOS Home & Garden - Realtà dedicata a 360 gradi ai settori della casa e del giardino." height="50"/>
+    </a>
+    <a href="https://global.techradar.com/it-it" target="_blank" rel="noopener noreferrer">
+        <img style="margin: 10px" src="https://3labs-assets.b-cdn.net/assets/logos/400/techradar.png" alt="Techradar - Le ultime notizie e recensioni dal mondo della tecnologia, su computer, sistemi per la casa, gadget e altro." height="50"/>
+    </a>
+    <a href="https://aibay.it/" target="_blank" rel="noopener noreferrer">
+        <img style="margin: 10px" src="https://3labs-assets.b-cdn.net/assets/logos/400/aibay.png" alt="Aibay - Scopri AiBay, il leader delle notizie sull'intelligenza artificiale. Resta aggiornato sulle ultime innovazioni, ricerche e tendenze del mondo AI con approfondimenti, interviste esclusive e analisi dettagliate." height="50"/>
+    </a>
+    <a href="https://coinlabs.it/" target="_blank" rel="noopener noreferrer">
+        <img style="margin: 10px" src="https://3labs-assets.b-cdn.net/assets/logos/400/coinlabs.png" alt="Coinlabs - Notizie, analisi approfondite, guide e opinioni aggiornate sul mondo delle criptovalute, blockchain e finanza" height="50"/>
+    </a>
+
+</div>
