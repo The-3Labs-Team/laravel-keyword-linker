@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-keyword-linker` will be documented in this file.
 
+## v1.0.6 - 2025-06-04
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.3.0 to 2.4.0 by @dependabot in https://github.com/The-3Labs-Team/laravel-keyword-linker/pull/5
+
+**Full Changelog**: https://github.com/The-3Labs-Team/laravel-keyword-linker/compare/v1.0.5...v1.0.6
+
 ## v1.0.5 - 2025-04-22
 
 **Full Changelog**: https://github.com/The-3Labs-Team/laravel-keyword-linker/compare/v1.0.4...v1.0.5
