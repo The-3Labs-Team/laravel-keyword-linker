@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-keyword-linker` will be documented in this file.
 
+## v1.0.7 - 2025-07-18
+
+### What's Changed
+
+* Bump stefanzweifel/git-auto-commit-action from 5 to 6 by @dependabot[bot] in https://github.com/The-3Labs-Team/laravel-keyword-linker/pull/6
+
+**Full Changelog**: https://github.com/The-3Labs-Team/laravel-keyword-linker/compare/v1.0.6...v1.0.7
+
 ## v1.0.6 - 2025-06-04
 
 ### What's Changed
