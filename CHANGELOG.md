@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-keyword-linker` will be documented in this file.
 
+## v1.1.1 - 2025-07-22
+
+Add PHP 8.4 support
+
+**Full Changelog**: https://github.com/The-3Labs-Team/laravel-keyword-linker/compare/v1.1.0...v1.1.1
+
 ## v1.0.7 - 2025-07-18
 
 ### What's Changed
