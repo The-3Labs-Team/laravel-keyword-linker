@@ -13,7 +13,7 @@ This is a package that converts keywords into links.
 
 | Package Version     | Requirement | Version             |
 |---------------------|-------------|---------------------|
-| 1.x.x               | PHP         | 8.1, 8.2, 8.3 or 8.4 |
+| 1.x.x               | PHP         | 8.2, 8.3 or 8.4 |
 | 1.x.x               | Laravel     | 10.x, 11.x or 12.x |
 
 ## Installation

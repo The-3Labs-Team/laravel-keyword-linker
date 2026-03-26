@@ -37,7 +37,7 @@ jobs:
             "phpstan/phpstan-phpunit:^2.0.7" \
             "phpstan/phpstan-deprecation-rules:^2.0.3" \
             --no-interaction --no-update
-          composer update --prefer-dist --no-interaction
+          composer update -W --prefer-dist --no-interaction
 
       - name: Run PHPStan
         run: ./vendor/bin/phpstan analyse --no-progress --error-format=github
