@@ -1,28 +1,43 @@
 name: PHPStan
 
 on:
-  push:
-    paths:
-      - '**.php'
-      - 'phpstan.neon.dist'
-      - '.github/workflows/phpstan.yml'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   phpstan:
     name: phpstan
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: "8.4"
           coverage: none
 
+      - name: Validate composer
+        run: composer validate --no-check-publish
+
       - name: Install composer dependencies
-        uses: ramsey/composer-install@v3
+        run: |
+          composer require --dev \
+            "laravel/framework:12.*" \
+            "orchestra/testbench:^10.9.0" \
+            "pestphp/pest:^3.8.4" \
+            "pestphp/pest-plugin-laravel:^3.2.0" \
+            "pestphp/pest-plugin-arch:^3.1.1" \
+            "larastan/larastan:^3.9.2" \
+            "phpstan/phpstan:^2.1.32" \
+            "phpstan/phpstan-phpunit:^2.0.7" \
+            "phpstan/phpstan-deprecation-rules:^2.0.3" \
+            --no-interaction --no-update
+          composer update --prefer-dist --no-interaction
 
       - name: Run PHPStan
-        run: ./vendor/bin/phpstan --error-format=github
+        run: ./vendor/bin/phpstan analyse --no-progress --error-format=github

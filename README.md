@@ -4,8 +4,6 @@
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/the-3labs-team/laravel-keyword-linker/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/the-3labs-team/laravel-keyword-linker/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![Github PHPStan](https://img.shields.io/github/actions/workflow/status/the-3labs-team/laravel-keyword-linker/phpstan.yml?branch=main&label=phpstan&style=flat-square)](https://github.com/the-3labs-team/laravel-keyword-linker/actions?query=workflow%3Aphpstan+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/the-3labs-team/laravel-keyword-linker/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/the-3labs-team/laravel-keyword-linker/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Maintainability](https://api.codeclimate.com/v1/badges/6ad969baa15a372e264e/maintainability)](https://codeclimate.com/github/The-3Labs-Team/laravel-keyword-linker/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/6ad969baa15a372e264e/test_coverage)](https://codeclimate.com/github/The-3Labs-Team/laravel-keyword-linker/test_coverage)
 ![License Mit](https://img.shields.io/github/license/murdercode/laravel-shortcode-plus)
 [![Total Downloads](https://img.shields.io/packagist/dt/the-3labs-team/laravel-keyword-linker.svg?style=flat-square)](https://packagist.org/packages/the-3labs-team/laravel-keyword-linker)
 
@@ -15,17 +13,15 @@ This is a package that converts keywords into links.
 
 | Package Version     | Requirement | Version             |
 |---------------------|-------------|---------------------|
-| 1.x.x               | Laravel     | 10.x or 11.x        |
-| 1.x.x               | Nova        | 4.x                 |
-| dev-beta-laravel-12 | Laravel     | 12.x                |
-| dev-beta-laravel-12 | Nova        | 5.x                 |
+| 1.x.x               | PHP         | 8.1, 8.2, 8.3 or 8.4 |
+| 1.x.x               | Laravel     | 10.x, 11.x or 12.x |
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer install the-3labs-team/keyword-linker
+composer require the-3labs-team/laravel-keyword-linker
 ```
 
 You can publish the config file with:
