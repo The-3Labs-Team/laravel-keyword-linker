@@ -2,6 +2,30 @@
 
 All notable changes to `laravel-keyword-linker` will be documented in this file.
 
+## v1.2.0 - 2026-03-26
+
+### What changed
+
+- refreshed the pull-request CI baseline and removed the old Code Climate dependency from test gating
+- aligned testing and static-analysis tooling for Laravel 10, 11, and 12
+- updated GitHub Actions workflow dependencies to actions/checkout v6, stefanzweifel/git-auto-commit-action v7, and ramsey/composer-install v4 through the new baseline
+- fixed README support and installation guidance
+
+### Config changes
+
+- no package config changes were introduced
+
+### Upgrade steps
+
+- if you were still relying on PHP 8.1, upgrade to PHP 8.2 or newer before adopting this release
+- if you use repository automation for dependency updates, verify that GitHub repository-level Allow auto-merge is enabled if you want Dependabot auto-merge to work end to end
+
+### Compatibility notes
+
+- package support is now declared for PHP 8.2, 8.3, and 8.4
+- package support is documented and verified for Laravel 10, 11, and 12
+- CI and PHPStan now run on pull requests with a coherent package-maintenance baseline
+
 ## v1.1.1 - 2025-07-22
 
 Add PHP 8.4 support
