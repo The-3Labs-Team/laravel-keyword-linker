@@ -1,64 +1,84 @@
 name: run-tests
 
 on:
-  push:
-    branches: [main]
   pull_request:
-    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest]
-        php: [8.3]
-        laravel: [11.*]
-        stability: [prefer-stable]
         include:
-          - laravel: 11.*
-            testbench: 9.*
-            carbon: ^2.63
+          - php: "8.2"
+            laravel: "10.*"
+            testbench: "^8.22.0"
+            pest: "^2.34.7"
+            pest_plugin_laravel: "^2.4.0"
+            pest_plugin_arch: "^2.7.0"
+            larastan: "^2.11.2"
+            phpstan: "^1.12.17"
+            phpstan_phpunit: "^1.4.2"
+            phpstan_deprecation_rules: "^1.2.1"
+          - php: "8.2"
+            laravel: "11.*"
+            testbench: "^9.17.0"
+            pest: "^3.8.4"
+            pest_plugin_laravel: "^3.2.0"
+            pest_plugin_arch: "^3.1.1"
+            larastan: "^3.9.2"
+            phpstan: "^2.1.32"
+            phpstan_phpunit: "^2.0.7"
+            phpstan_deprecation_rules: "^2.0.3"
+          - php: "8.4"
+            laravel: "12.*"
+            testbench: "^10.9.0"
+            pest: "^3.8.4"
+            pest_plugin_laravel: "^3.2.0"
+            pest_plugin_arch: "^3.1.1"
+            larastan: "^3.9.2"
+            phpstan: "^2.1.32"
+            phpstan_phpunit: "^2.0.7"
+            phpstan_deprecation_rules: "^2.0.3"
 
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
+    name: P${{ matrix.php }} - L${{ matrix.laravel }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
-          coverage: xdebug
+          coverage: none
 
-      - name: Setup problem matchers
-        run: |
-          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+      - name: Validate composer
+        run: composer validate --no-check-publish
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "nesbot/carbon:${{ matrix.carbon }}" --no-interaction --no-update
-          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+          composer require --dev \
+            "laravel/framework:${{ matrix.laravel }}" \
+            "orchestra/testbench:${{ matrix.testbench }}" \
+            "pestphp/pest:${{ matrix.pest }}" \
+            "pestphp/pest-plugin-laravel:${{ matrix.pest_plugin_laravel }}" \
+            "pestphp/pest-plugin-arch:${{ matrix.pest_plugin_arch }}" \
+            "larastan/larastan:${{ matrix.larastan }}" \
+            "phpstan/phpstan:${{ matrix.phpstan }}" \
+            "phpstan/phpstan-phpunit:${{ matrix.phpstan_phpunit }}" \
+            "phpstan/phpstan-deprecation-rules:${{ matrix.phpstan_deprecation_rules }}" \
+            --no-interaction --no-update
+          composer update -W --prefer-dist --no-interaction
 
       - name: List Installed Dependencies
         run: composer show -D
 
-      - name: Setup Code Climate
-        uses: amancevice/setup-code-climate@v2
-        with:
-          cc_test_reporter_id: ${{ secrets.CC_TEST_REPORTER_ID }}
-
-      - name: Install Code Climate Test Reporter
-        run: cc-test-reporter before-build
-
       - name: Run Tests
-        run: |
-          vendor/bin/pest --coverage-clover clover.xml
-
-      - name: Upload coverage reports to Code Climate
-        run: |
-          cc-test-reporter after-build
+        run: composer test
